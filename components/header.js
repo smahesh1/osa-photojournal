@@ -3,17 +3,22 @@ import { View, Text, StyleSheet } from 'react-native';
 
 const Header = props => {
     return (
-        <View>
-            <Text>{props.headerText}</Text>
+        <View style={styles.headerContainer}>
+            <Text style={styles.headerText}>{props.headerText}</Text>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    header: {
-        flex: 1,
-        paddingTop: 60,
-        color: 'green',
+    headerContainer: {
+        marginTop: 20,
+        height: 40,
+        backgroundColor: 'green',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    headerText: {
+        color: 'white'
     }
 })
 
