@@ -14,13 +14,20 @@ export default function App() {
     setScreen('v')
   }
 
+  const goToLandingHandler = () => {
+    setScreen('l')
+  }
+
   let curr_screen_object = <LandingScreen createHandler={createEntryHandler}
                                           viewEntriesHandler={viewEntriesHandler} />
 
   if (screen === 'c') {
     curr_screen_object = <CreateEntryScreen />
   } else if (screen === 'v') {
-    curr_screen_object = <ViewYearsScreen />
+    curr_screen_object = <ViewYearsScreen goBackHandler={goToLandingHandler}/>
+  } else if (screen === 'l') {
+    curr_screen_object = <LandingScreen createHandler={createEntryHandler}
+                                        viewEntriesHandler={viewEntriesHandler} />
   }
 
   return (

@@ -4,7 +4,7 @@ import styles from "../assets/styles";
 import Header from "../components/header";
 import database from "../dummyDatabase/testData";
 
-const ViewYearsScreen = () => {
+const ViewYearsScreen = props => {
 
     let years = null;
 
@@ -18,17 +18,22 @@ const ViewYearsScreen = () => {
     return (
         <View style={styles.screen}>
             <Header headerText={'Select a year'}/>
-            <View style={styles.centeringScreen}>
-                <FlatList contentContainerStyle={styles.flatlist} data={years}
+            <View style={styles.flatlistContainer}>
+                <FlatList contentContainerStyle={styles.flatlist} data={years.reverse()}
                           renderItem={({item}) => (
-                              <TouchableOpacity style={styles.listedCard} onPress={console.log(item)}>
-                                  <Text style={styles.primaryText}>{item}</Text>
-                              </TouchableOpacity> )}
-                          keyExtractor={item => item}/>
+                              <View style={styles.listedCardContianer}>
+                                  <TouchableOpacity style={styles.listedCard} onPress={null}>
+                                      <Text style={styles.primaryText}>{item}</Text>
+                                  </TouchableOpacity>
+                              </View> )}
+                          keyExtractor={item => item}
+                          showsVerticalScrollIndicator={false}/>
             </View>
-            <TouchableOpacity style={styles.bottomTouchable}>
-                <Text style={styles.primaryText}>Go Back</Text>
-            </TouchableOpacity>
+            <View style={styles.bottomTouchableContainer}>
+                <TouchableOpacity style={styles.bottomTouchable} onPress={props.goBackHandler}>
+                    <Text style={styles.primaryText}>Go Back</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }

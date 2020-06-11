@@ -6,12 +6,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#39ffbe',
         flex: 1
     },
-    centeringScreen: {
-        backgroundColor: '#39be',
-        flex: 1,
-        alignItems: 'center',
-        width: '100%'
-    },
     cardContainer: {
         backgroundColor: '#39ffbe',
         flex: 1,
@@ -44,31 +38,40 @@ const styles = StyleSheet.create({
     bottomTouchable: {
         borderRadius: 50,
         backgroundColor: '#5ba8ff',
-        height: '35%',
+        flex: .75,
         width: '80%',
         alignItems: 'center',
-        justifyContent: 'flex-end'
+        justifyContent: 'center'
+    },
+    bottomTouchableContainer: {
+        backgroundColor: '#9e62ff',
+        flex: 1,
+        alignItems: 'center',
+        width: '100%',
+        justifyContent: 'center',
     },
     listedCard: {
         borderRadius: 50,
         backgroundColor: '#5ba8ff',
-        height: 100,
-        width: '100%',
+        height: 200,
+        width: 250,
         alignItems: 'center',
         justifyContent: 'center',
     },
+    listedCardContianer: {
+        paddingBottom: 40
+    },
     flatlistContainer: {
-        alignItems: 'center',
-        backgroundColor: '#39f',
-        flex: 1,
-        width: '80%'
+        backgroundColor: '#39ffbe',
+        flex: 7,
+        alignItems: 'center'
     },
     flatlist: {
+        paddingTop: 40,
         backgroundColor: '#39ffbe',
-        flex: 1,
         width: '100%',
         alignItems: 'center',
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-between'
     }
 })
 
