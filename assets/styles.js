@@ -43,12 +43,28 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+    bottomTouchableOfTwo: {
+        borderRadius: 50,
+        backgroundColor: '#5ba8ff',
+        flex: .4,
+        height: '75%',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     bottomTouchableContainer: {
         backgroundColor: '#9e62ff',
         flex: 1,
         alignItems: 'center',
         width: '100%',
         justifyContent: 'center',
+    },
+    bottomTouchablesContainer: {
+        flexDirection: 'row',
+        backgroundColor: '#9e62ff',
+        flex: 1,
+        alignItems: 'center',
+        width: '100%',
+        justifyContent: 'space-around'
     },
     listedCard: {
         borderRadius: 50,
@@ -72,7 +88,12 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         justifyContent: 'space-between'
-    }
+    },
+    creationContainer: {
+        backgroundColor: '#39ffbe',
+        flex: 7,
+        alignItems: 'center'
+    },
 })
 
 export default styles;

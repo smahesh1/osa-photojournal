@@ -22,7 +22,7 @@ export default function App() {
                                           viewEntriesHandler={viewEntriesHandler} />
 
   if (screen === 'c') {
-    curr_screen_object = <CreateEntryScreen />
+    curr_screen_object = <CreateEntryScreen goBackHandler={goToLandingHandler}/>
   } else if (screen === 'v') {
     curr_screen_object = <ViewYearsScreen goBackHandler={goToLandingHandler}/>
   } else if (screen === 'l') {

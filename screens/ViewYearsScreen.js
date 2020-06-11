@@ -12,7 +12,6 @@ const ViewYearsScreen = props => {
         //Give message saying no entries, allow user to go back
     } else {
         years = Object.keys(database['entriesByTime']);
-        console.log(Object.keys(database['entriesByTime']))
     }
 
     return (
