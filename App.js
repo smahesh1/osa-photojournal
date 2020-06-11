@@ -1,22 +1,9 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Header from './components/header';
-import HeaderInput from "./components/HeaderInput";
+import React from 'react';
+import LandingScreen from "./screens/LandingScreen";
 
 export default function App() {
-    const [headerText, setHeaderText] = useState('');
-
-    const headerInputHandler = input => {
-        setHeaderText(input);
-    }
 
   return (
-      <View>
-        <Header headerText={headerText} />
-        <HeaderInput headerInputHandler={headerInputHandler}/>
-      </View>
+      <LandingScreen />
   );
 }
-
-const styles = StyleSheet.create({
-});
