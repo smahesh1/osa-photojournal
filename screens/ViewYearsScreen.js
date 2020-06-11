@@ -3,13 +3,13 @@ import { View } from 'react-native';
 import styles from "../assets/styles";
 import Header from "../components/header";
 
-const CreateEntryScreen = () => {
+const ViewYearsScreen = () => {
 
     return (
         <View style={styles.screen}>
-            <Header headerText={'Create Entry Screen'}/>
+            <Header headerText={'View Entries Screen'}/>
         </View>
     )
 }
 
-export default CreateEntryScreen;
+export default ViewYearsScreen;
