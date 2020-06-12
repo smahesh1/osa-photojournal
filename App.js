@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import LandingScreen from "./screens/LandingScreen";
 import CreateEntryScreen from "./screens/CreateEntryScreen";
-import ViewYearsScreen from "./screens/ViewYearsScreen";
+import ViewEntriesManager from "./screens/ViewEntriesManager";
 
 export default function App() {
   const [screen, setScreen] = useState('l')
+
+
 
   const createEntryHandler = () => {
     setScreen('c')
@@ -24,7 +26,7 @@ export default function App() {
   if (screen === 'c') {
     curr_screen_object = <CreateEntryScreen goBackHandler={goToLandingHandler}/>
   } else if (screen === 'v') {
-    curr_screen_object = <ViewYearsScreen goBackHandler={goToLandingHandler}/>
+    curr_screen_object = <ViewEntriesManager goBackHandler={goToLandingHandler}/>
   } else if (screen === 'l') {
     curr_screen_object = <LandingScreen createHandler={createEntryHandler}
                                         viewEntriesHandler={viewEntriesHandler} />

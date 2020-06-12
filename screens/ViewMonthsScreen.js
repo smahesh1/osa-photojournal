@@ -4,25 +4,26 @@ import styles from "../assets/styles";
 import Header from "../components/header";
 import database from "../dummyDatabase/testData";
 
-const ViewYearsScreen = props => {
+const ViewMonthsScreen = props => {
 
-    let years = null;
+    //let months = null;
 
-    if (database['entriesByTime'] === null) {
+    const months = Object.keys(database['entriesByTime'][(props.year)]);
+
+    //if (database['entriesByTime'] === null) {
         //Give message saying no entries, allow user to go back
-    } else {
-        years = Object.keys(database['entriesByTime']);
-    }
+    //} else {
+    //    months = Object.keys(database['entriesByTime']);
+    //}
 
     return (
         <View style={styles.screen}>
-            <Header headerText={'Select a year'}/>
+            <Header headerText={'Select a month from' + props.year}/>
             <View style={styles.flatlistContainer}>
-                <FlatList contentContainerStyle={styles.flatlist} data={years.reverse()}
+                <FlatList contentContainerStyle={styles.flatlist} data={months}
                           renderItem={({item}) => (
                               <View style={styles.listedCardContianer}>
-                                  <TouchableOpacity style={styles.listedCard}
-                                                    onPress={props.YearPressHandler.bind(this, item)}>
+                                  <TouchableOpacity style={styles.listedCard} onPress={null}>
                                       <Text style={styles.primaryText}>{item}</Text>
                                   </TouchableOpacity>
                               </View> )}
@@ -38,4 +39,4 @@ const ViewYearsScreen = props => {
     )
 }
 
-export default ViewYearsScreen;
+export default ViewMonthsScreen;
