@@ -1,20 +1,27 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
+const green = '#39ffbe'
+const blue = '#5ba8ff'
+const purple = '#9e62ff'
+const yellow = '#cfff7b'
+const pink = '#ff9bd3'
+
+
 const styles = StyleSheet.create({
     screen: {
-        backgroundColor: '#39ffbe',
+        backgroundColor: green,
         flex: 1
     },
     cardContainer: {
-        backgroundColor: '#39ffbe',
+        backgroundColor: green,
         flex: 1,
         alignItems: 'center',
         justifyContent: 'space-evenly'
     },
     card: {
         borderRadius: 50,
-        backgroundColor: '#5ba8ff',
+        backgroundColor: blue,
         height: '35%',
         width: '80%',
         alignItems: 'center',
@@ -23,7 +30,7 @@ const styles = StyleSheet.create({
     headerContainer: {
         marginTop: 20,
         height: 60,
-        backgroundColor: '#9e62ff',
+        backgroundColor: purple,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -37,7 +44,7 @@ const styles = StyleSheet.create({
     },
     bottomTouchable: {
         borderRadius: 50,
-        backgroundColor: '#5ba8ff',
+        backgroundColor: blue,
         flex: .75,
         width: '80%',
         alignItems: 'center',
@@ -45,14 +52,14 @@ const styles = StyleSheet.create({
     },
     bottomTouchableOfTwo: {
         borderRadius: 50,
-        backgroundColor: '#5ba8ff',
+        backgroundColor: blue,
         flex: .4,
         height: '75%',
         alignItems: 'center',
         justifyContent: 'center'
     },
     bottomTouchableContainer: {
-        backgroundColor: '#9e62ff',
+        backgroundColor: purple,
         flex: 1,
         alignItems: 'center',
         width: '100%',
@@ -60,7 +67,7 @@ const styles = StyleSheet.create({
     },
     bottomTouchablesContainer: {
         flexDirection: 'row',
-        backgroundColor: '#9e62ff',
+        backgroundColor: purple,
         flex: 1,
         alignItems: 'center',
         width: '100%',
@@ -68,7 +75,7 @@ const styles = StyleSheet.create({
     },
     listedCard: {
         borderRadius: 50,
-        backgroundColor: '#5ba8ff',
+        backgroundColor: blue,
         height: 200,
         width: 250,
         alignItems: 'center',
@@ -78,22 +85,36 @@ const styles = StyleSheet.create({
         paddingBottom: 40
     },
     flatlistContainer: {
-        backgroundColor: '#39ffbe',
+        backgroundColor: green,
         flex: 7,
         alignItems: 'center'
     },
     flatlist: {
         paddingTop: 40,
-        backgroundColor: '#39ffbe',
+        backgroundColor: green,
         width: '100%',
         alignItems: 'center',
         justifyContent: 'space-between'
     },
     creationContainer: {
-        backgroundColor: '#39ffbe',
+        backgroundColor: green,
         flex: 7,
         alignItems: 'center'
     },
+    ubicationContainer: {
+        flex: .1,
+        width: '100%',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        backgroundColor: yellow
+    },
+    ubicationText: {
+        color: 'black',
+        fontSize: 25,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingLeft: 15
+    }
 })
 
 export default styles;
