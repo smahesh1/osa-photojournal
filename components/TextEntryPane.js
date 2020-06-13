@@ -9,8 +9,6 @@ const TextEntryPane = props => {
     const [date, setDate] = useState(firstDate);
     const [latitude, setLatitude] = useState(0.0)
     const [longitude, setLongitude] = useState(0.0)
-    const [titleText, setTitleText] = useState('')
-    const [descriptionText, setDescriptionText] = useState('')
 
     useEffect(() => {
         const interval = setInterval(() => setDate(Date()), 20);
@@ -37,13 +35,13 @@ const TextEntryPane = props => {
             </View>
             <View style={styles.inputContainer}>
                 <TextInput style={styles.titleInput}
-                           onChangeText={text => setTitleText(text)}
+                           onChangeText={text => props.setTitleText(text)}
                            placeholder={'Title'}
-                           value={titleText} />
+                           value={props.titleText} />
                 <TextInput style={styles.descriptionInput}
-                           onChangeText={text => setDescriptionText(text)}
+                           onChangeText={text => props.setDescriptionText(text)}
                            placeholder={'Description'}
-                           value={descriptionText} multiline={true} />
+                           value={props.descriptionText} multiline={true} />
             </View>
             <View style={styles.addPhotoContainer}>
                 <TouchableOpacity style={styles.addPhotoTouchable}

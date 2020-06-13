@@ -8,6 +8,8 @@ import CreationPane from "../components/CreationPane";
 const CreateEntryScreen = props => {
 
     const [cameraOn, setCameraOn] = useState(false)
+    const [titleText, setTitleText] = useState('')
+    const [descriptionText, setDescriptionText] = useState('')
 
     return (
         <KeyboardAwareScrollView contentContainerStyle={styles.screen}
@@ -22,7 +24,9 @@ const CreateEntryScreen = props => {
                     <CreationPane cameraOn={cameraOn}
                                   turnOnCamera={() => {
                                       setCameraOn(true)
-                                  }}/>
+                                  }}
+                                  titleText={titleText} setTitleText={setTitleText}
+                                  descriptionText={descriptionText} setDescriptionText={setDescriptionText} />
 
                     <View style={styles.bottomTouchablesContainer}>
                         <TouchableOpacity style={styles.bottomTouchableOfTwo} onPress={
