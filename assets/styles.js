@@ -177,7 +177,14 @@ const styles = StyleSheet.create({
     },
     addPhotoText: {
         color: 'black',
-        fontSize: 25    }
+        fontSize: 25
+    },
+    cameraContainer: {
+        flex: 7
+    },
+    camera: {
+        flex: 1
+    },
 })
 
 export default styles;
