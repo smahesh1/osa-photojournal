@@ -20,8 +20,8 @@ const ViewYearsScreen = props => {
             <View style={styles.flatlistContainer}>
                 <FlatList contentContainerStyle={styles.flatlist} data={years.reverse()}
                           renderItem={({item}) => (
-                              <View style={styles.listedCardContianer}>
-                                  <TouchableOpacity style={styles.listedCard}
+                              <View style={styles.yearCardContianer}>
+                                  <TouchableOpacity style={styles.yearCard}
                                                     onPress={props.YearPressHandler.bind(this, item)}>
                                       <Text style={styles.primaryText}>{item}</Text>
                                   </TouchableOpacity>

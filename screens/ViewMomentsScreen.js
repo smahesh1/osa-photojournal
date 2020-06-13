@@ -24,12 +24,12 @@ const ViewMomentsScreen = props => {
 
     return (
         <View style={styles.screen}>
-            <Header headerText={'Select a moment from ' + props.month + ' ' + props.year}/>
+            <Header headerText={props.month + ' ' + props.year}/>
             <View style={styles.flatlistContainer}>
                 <FlatList contentContainerStyle={styles.flatlist} data={moments}
                           renderItem={({item}) => (
-                              <View style={styles.listedCardContianer}>
-                                  <TouchableOpacity style={styles.listedCard} onPress={null}>
+                              <View style={styles.momentCardContianer}>
+                                  <TouchableOpacity style={styles.momentCard} onPress={null}>
                                       <Text style={styles.primaryText}>{item}</Text>
                                   </TouchableOpacity>
                               </View> )}

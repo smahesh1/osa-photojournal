@@ -10,12 +10,12 @@ const ViewMonthsScreen = props => {
 
     return (
         <View style={styles.screen}>
-            <Header headerText={'Select a month in ' + props.year}/>
+            <Header headerText={props.year}/>
             <View style={styles.flatlistContainer}>
                 <FlatList contentContainerStyle={styles.flatlist} data={months}
                           renderItem={({item}) => (
-                              <View style={styles.listedCardContianer}>
-                                  <TouchableOpacity style={styles.listedCard}
+                              <View style={styles.monthCardContianer}>
+                                  <TouchableOpacity style={styles.monthCard}
                                                     onPress={props.MonthPressHandler.bind(this, item)}>
                                       <Text style={styles.primaryText}>{item}</Text>
                                   </TouchableOpacity>

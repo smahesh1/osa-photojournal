@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-around'
     },
-    listedCard: {
+    yearCard: {
         borderRadius: 50,
         backgroundColor: blue,
         height: 200,
@@ -81,8 +81,30 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    listedCardContianer: {
+    monthCard: {
+        borderRadius: 30,
+        backgroundColor: blue,
+        height: 100,
+        width: 250,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    momentCard: {
+        borderRadius: 10,
+        backgroundColor: blue,
+        height: 50,
+        width: 275,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    yearCardContianer: {
         paddingBottom: 40
+    },
+    monthCardContianer: {
+        paddingBottom: 40
+    },
+    momentCardContianer: {
+        paddingBottom: 15
     },
     flatlistContainer: {
         backgroundColor: green,
@@ -90,14 +112,14 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     flatlist: {
-        paddingTop: 40,
+        paddingTop: '10%',
         backgroundColor: green,
         width: '100%',
         alignItems: 'center',
         justifyContent: 'space-between'
     },
     creationContainer: {
-        backgroundColor: green,
+        backgroundColor: pink,
         flex: 7,
         alignItems: 'center'
     },
@@ -113,8 +135,45 @@ const styles = StyleSheet.create({
         fontSize: 25,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingLeft: 15
-    }
+        paddingLeft: '5%'
+    },
+    inputContainer: {
+        paddingTop: '10%',
+        width: '80%',
+        flex: .6,
+    },
+    titleInput: {
+        flex: 1,
+        backgroundColor: green,
+        fontSize: 30,
+        paddingLeft: '3%',
+    },
+    descriptionInput: {
+        flex: 3,
+        backgroundColor: green,
+        fontSize: 20,
+        paddingLeft: '3%',
+        justifyContent: 'flex-start'
+    },
+    addPhotoContainer: {
+        paddingTop: '10%',
+        width: '60%',
+        flex: .2,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingBottom: '10%'
+    },
+    addPhotoTouchable: {
+        borderRadius: 10,
+        backgroundColor: yellow,
+        height: '100%',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    addPhotoText: {
+        color: 'black',
+        fontSize: 25    }
 })
 
 export default styles;
