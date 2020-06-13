@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     ubicationContainer: {
-        flex: .1,
+        flex: .125,
         width: '100%',
         alignItems: 'flex-start',
         justifyContent: 'center',
@@ -140,20 +140,24 @@ const styles = StyleSheet.create({
     inputContainer: {
         paddingTop: '10%',
         width: '80%',
-        flex: .6,
+        flex: .7,
     },
     titleInput: {
         flex: 1,
         backgroundColor: green,
         fontSize: 30,
         paddingLeft: '3%',
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10
     },
     descriptionInput: {
         flex: 3,
         backgroundColor: green,
         fontSize: 20,
         paddingLeft: '3%',
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10
     },
     addPhotoContainer: {
         paddingTop: '10%',

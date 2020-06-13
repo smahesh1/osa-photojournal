@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, TouchableOpacity, Text, TextInput,
+    TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from "../assets/styles";
 import Header from "../components/header";
 
@@ -27,46 +29,50 @@ const CreateEntryScreen = props => {
 
 
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.screen}>
-                <Header headerText={'Create an Entry'}/>
-                <View style={styles.creationContainer}>
-                    <View style={styles.ubicationContainer}>
-                        <Text style={styles.ubicationText}>
-                            {date.toString().slice(0, 24)}
-                        </Text>
+        <KeyboardAwareScrollView contentContainerStyle={styles.screen}
+                                 resetScrollToCoords={{x: 0, y: 0}}
+                                 scrollEnabled={false} >
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style={styles.screen}>
+                    <Header headerText={'Create an Entry'}/>
+                    <View style={styles.creationContainer}>
+                        <View style={styles.ubicationContainer}>
+                            <Text style={styles.ubicationText}>
+                                {date.toString().slice(0, 24)}
+                            </Text>
+                        </View>
+                        <View style={styles.ubicationContainer}>
+                            <Text style={styles.ubicationText}>
+                                {latitude.toFixed(4)}, {longitude.toFixed(4)}
+                            </Text>
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <TextInput style={styles.titleInput}
+                                       onChangeText={text => setTitleText(text)}
+                                       placeholder={'Title'}
+                                       value={titleText} />
+                            <TextInput style={styles.descriptionInput}
+                                       onChangeText={text => setDescriptionText(text)}
+                                       placeholder={'Description'}
+                                       value={descriptionText} multiline={true} />
+                        </View>
+                        <View style={styles.addPhotoContainer}>
+                            <TouchableOpacity style={styles.addPhotoTouchable}>
+                                <Text style={styles.addPhotoText}>Add photo</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={styles.ubicationContainer}>
-                        <Text style={styles.ubicationText}>
-                            {latitude.toFixed(4)}, {longitude.toFixed(4)}
-                        </Text>
-                    </View>
-                    <View style={styles.inputContainer}>
-                        <TextInput style={styles.titleInput}
-                                   onChangeText={text => setTitleText(text)}
-                                   placeholder={'Title'}
-                                   value={titleText} />
-                        <TextInput style={styles.descriptionInput}
-                                   onChangeText={text => setDescriptionText(text)}
-                                   placeholder={'Description'}
-                                   value={descriptionText} multiline={true} />
-                    </View>
-                    <View style={styles.addPhotoContainer}>
-                        <TouchableOpacity style={styles.addPhotoTouchable}>
-                            <Text style={styles.addPhotoText}>Add photo</Text>
+                    <View style={styles.bottomTouchablesContainer}>
+                        <TouchableOpacity style={styles.bottomTouchableOfTwo} onPress={props.goBackHandler}>
+                            <Text style={styles.primaryText}>Cancel</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.bottomTouchableOfTwo} onPress={null}>
+                            <Text style={styles.primaryText}>Submit</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
-                <View style={styles.bottomTouchablesContainer}>
-                    <TouchableOpacity style={styles.bottomTouchableOfTwo} onPress={props.goBackHandler}>
-                        <Text style={styles.primaryText}>Cancel</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.bottomTouchableOfTwo} onPress={null}>
-                        <Text style={styles.primaryText}>Submit</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        </TouchableWithoutFeedback>
+            </TouchableWithoutFeedback>
+        </KeyboardAwareScrollView>
     )
 }
 
