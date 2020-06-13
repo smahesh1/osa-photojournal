@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     ubicationContainer: {
-        flex: .125,
+        flex: .1,
         width: '100%',
         alignItems: 'flex-start',
         justifyContent: 'center',
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     },
     ubicationText: {
         color: 'black',
-        fontSize: 25,
+        fontSize: 20,
         alignItems: 'center',
         justifyContent: 'center',
         paddingLeft: '5%'
@@ -160,12 +160,12 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 10
     },
     addPhotoContainer: {
-        paddingTop: '10%',
+        paddingTop: '5%',
         width: '60%',
         flex: .2,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingBottom: '10%'
+        paddingBottom: '15%'
     },
     addPhotoTouchable: {
         borderRadius: 10,

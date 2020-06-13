@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, TextInput,
-    TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, TouchableOpacity, Text, TextInput, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from "../assets/styles";
 import Header from "../components/header";
@@ -31,7 +30,9 @@ const CreateEntryScreen = props => {
     return (
         <KeyboardAwareScrollView contentContainerStyle={styles.screen}
                                  resetScrollToCoords={{x: 0, y: 0}}
-                                 scrollEnabled={false} >
+                                 scrollEnabled={false}
+                                 extraHeight={90}
+                                 keyboardShouldPersistTaps={'handled'} >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.screen}>
                     <Header headerText={'Create an Entry'}/>
@@ -57,19 +58,25 @@ const CreateEntryScreen = props => {
                                        value={descriptionText} multiline={true} />
                         </View>
                         <View style={styles.addPhotoContainer}>
-                            <TouchableOpacity style={styles.addPhotoTouchable}>
+                            <TouchableOpacity style={styles.addPhotoTouchable}
+                                              onPress={() => {
+                                                  Keyboard.dismiss()
+                                                  Alert.alert('Add Photo',
+                                                      'Sorry, photo-taking is not supported at this time')
+                                              }}>
                                 <Text style={styles.addPhotoText}>Add photo</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <View style={styles.bottomTouchablesContainer}>
-                        <TouchableOpacity style={styles.bottomTouchableOfTwo} onPress={props.goBackHandler}>
-                            <Text style={styles.primaryText}>Cancel</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.bottomTouchableOfTwo} onPress={null}>
-                            <Text style={styles.primaryText}>Submit</Text>
-                        </TouchableOpacity>
-                    </View>
+                        <View style={styles.bottomTouchablesContainer}>
+                            <TouchableOpacity style={styles.bottomTouchableOfTwo} onPress={props.goBackHandler}>
+                                <Text style={styles.primaryText}>Cancel</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.bottomTouchableOfTwo}
+                                              onPress={null}>
+                                <Text style={styles.primaryText}>Submit</Text>
+                            </TouchableOpacity>
+                        </View>
                 </View>
             </TouchableWithoutFeedback>
         </KeyboardAwareScrollView>
