@@ -11,6 +11,26 @@ const CreateEntryScreen = props => {
     const [titleText, setTitleText] = useState('')
     const [descriptionText, setDescriptionText] = useState('')
 
+    const cameraRef = React.createRef();
+
+    const snap = async (cameraRef) => {if (cameraRef) {
+        let photo = await cameraRef.current.takePictureAsync();
+        console.log(await photo);
+
+            }
+    };
+
+    console.log("HI PLEASE SHOW");
+
+    const test = () => {
+        if (cameraRef) {
+            console.log("testing yes");
+        }
+        else {
+            console.log("testing no");
+        }
+    }
+
     return (
         <KeyboardAwareScrollView contentContainerStyle={styles.screen}
                                  resetScrollToCoords={{x: 0, y: 0}}
@@ -24,7 +44,7 @@ const CreateEntryScreen = props => {
                     <CreationPane cameraOn={cameraOn}
                                   turnOnCamera={() => {
                                       setCameraOn(true)
-                                  }}
+                                  }} testCamera={cameraRef}
                                   titleText={titleText} setTitleText={setTitleText}
                                   descriptionText={descriptionText} setDescriptionText={setDescriptionText} />
 
@@ -34,7 +54,7 @@ const CreateEntryScreen = props => {
                             <Text style={styles.primaryText}>Cancel</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.bottomTouchableOfTwo}
-                                          onPress={null}>
+                                          onPress={snap.bind(this, cameraRef)}>
                             <Text style={styles.primaryText}>{cameraOn ? 'Capture' : 'Submit'}</Text>
                         </TouchableOpacity>
                     </View>

@@ -5,7 +5,7 @@ import TextEntryPane from "./TextEntryPane";
 const CreationPane = props => {
 
     return props.cameraOn ?
-        <CameraPane /> :
+        <CameraPane testCamera={props.testCamera} /> :
         <TextEntryPane turnOnCamera={props.turnOnCamera}
                        titleText = {props.titleText} setTitleText={props.setTitleText}
                        descriptionText={props.descriptionText} setDescriptionText={props.setDescriptionText} />

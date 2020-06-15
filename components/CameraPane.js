@@ -2,13 +2,34 @@ import React from 'react';
 import { View } from 'react-native';
 import styles from "../assets/styles";
 import { Camera } from "expo-camera";
+import { useState, useEffect} from 'react';
 
-const CameraPane = () => {
-    const type = Camera.Constants.Type.back
+const CameraPane = props => {
+    //const type = Camera.Constants.Type.back
+
+    const [hasPermission, setHasPermission] = useState(null);
+    const [type, setType] = useState(Camera.Constants.Type.back);
+
+    useEffect(() => {
+        (async () => {
+            const { status } = await Camera.requestPermissionsAsync();
+            setHasPermission(status === 'granted');
+        })();
+    }, []);
+
+    if (hasPermission === null) {
+        return <View style={styles.cameraContainer} />;
+    }
+    if (hasPermission === false) {
+        return <Text>No access to camera</Text>;
+    }
+
+
+
 
     return (
         <View style={styles.cameraContainer}>
-            <Camera style={styles.camera} type={type} />
+            <Camera style={styles.camera} type={type} ref={props.testCamera}/>
         </View>
     )
 
