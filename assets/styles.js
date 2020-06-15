@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     },
     ubicationText: {
         color: 'black',
-        fontSize: 25,
+        fontSize: 20,
         alignItems: 'center',
         justifyContent: 'center',
         paddingLeft: '5%'
@@ -140,28 +140,32 @@ const styles = StyleSheet.create({
     inputContainer: {
         paddingTop: '10%',
         width: '80%',
-        flex: .6,
+        flex: .7,
     },
     titleInput: {
         flex: 1,
         backgroundColor: green,
         fontSize: 30,
         paddingLeft: '3%',
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10
     },
     descriptionInput: {
         flex: 3,
         backgroundColor: green,
         fontSize: 20,
         paddingLeft: '3%',
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10
     },
     addPhotoContainer: {
-        paddingTop: '10%',
+        paddingTop: '5%',
         width: '60%',
         flex: .2,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingBottom: '10%'
+        paddingBottom: '15%'
     },
     addPhotoTouchable: {
         borderRadius: 10,
@@ -173,7 +177,14 @@ const styles = StyleSheet.create({
     },
     addPhotoText: {
         color: 'black',
-        fontSize: 25    }
+        fontSize: 25
+    },
+    cameraContainer: {
+        flex: 7
+    },
+    camera: {
+        flex: 1
+    },
 })
 
 export default styles;
