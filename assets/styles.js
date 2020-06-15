@@ -140,7 +140,13 @@ const styles = StyleSheet.create({
     inputContainer: {
         paddingTop: '10%',
         width: '80%',
+        flex: .7
+    },
+    transparentInputContainer: {
+        paddingTop: '10%',
+        width: '80%',
         flex: .7,
+        backgroundColor: 'rgba(0, 0, 0, 0.0)'
     },
     titleInput: {
         flex: 1,
@@ -148,7 +154,8 @@ const styles = StyleSheet.create({
         fontSize: 30,
         paddingLeft: '3%',
         borderTopLeftRadius: 10,
-        borderTopRightRadius: 10
+        borderTopRightRadius: 10,
+        opacity: 1
     },
     descriptionInput: {
         flex: 3,
@@ -157,7 +164,8 @@ const styles = StyleSheet.create({
         paddingLeft: '3%',
         justifyContent: 'flex-start',
         borderBottomLeftRadius: 10,
-        borderBottomRightRadius: 10
+        borderBottomRightRadius: 10,
+        opacity: 1
     },
     addPhotoContainer: {
         paddingTop: '5%',
@@ -167,6 +175,15 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         paddingBottom: '15%'
     },
+    transparentAddPhotoContainer: {
+        paddingTop: '5%',
+        width: '60%',
+        flex: .2,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingBottom: '15%',
+        backgroundColor: 'rgba(0, 0, 0, 0.0)'
+    },
     addPhotoTouchable: {
         borderRadius: 10,
         backgroundColor: yellow,
@@ -174,10 +191,12 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
+        opacity: 1
     },
     addPhotoText: {
         color: 'black',
-        fontSize: 25
+        fontSize: 25,
+        opacity: 1
     },
     cameraContainer: {
         flex: 7
@@ -185,6 +204,15 @@ const styles = StyleSheet.create({
     camera: {
         flex: 1
     },
+    backgroundImage: {
+        flex: 7,
+        alignItems: 'center'
+    },
+    textEntryPaneWrapper: {
+        flex: 1,
+        alignItems: 'center',
+        width: '100%'
+    }
 })
 
 export default styles;

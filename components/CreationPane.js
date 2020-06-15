@@ -6,7 +6,8 @@ const CreationPane = props => {
 
     return props.cameraOn ?
         <CameraPane testCamera={props.testCamera} /> :
-        <TextEntryPane turnOnCamera={props.turnOnCamera}
+        <TextEntryPane photo={props.photo}
+                       turnOnCamera={props.turnOnCamera}
                        titleText = {props.titleText} setTitleText={props.setTitleText}
                        descriptionText={props.descriptionText} setDescriptionText={props.setDescriptionText} />
 }
