@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {View, TouchableOpacity, Text, TextInput, Keyboard } from 'react-native';
+import {View, TouchableOpacity, Text, TextInput, Keyboard, ImageBackground } from 'react-native';
 import styles from "../assets/styles";
 
 const firstDate = Date();
@@ -21,8 +21,8 @@ const TextEntryPane = props => {
         };
     }, []);
 
-    return (
-        <View style={styles.creationContainer}>
+    const content =
+        <View style={styles.textEntryPaneWrapper} >
             <View style={styles.ubicationContainer}>
                 <Text style={styles.ubicationText}>
                     {date.toString().slice(0, 24)}
@@ -33,7 +33,7 @@ const TextEntryPane = props => {
                     {latitude.toFixed(4)}, {longitude.toFixed(4)}
                 </Text>
             </View>
-            <View style={styles.inputContainer}>
+            <View style={props.photo ? styles.transparentInputContainer : styles.inputContainer}>
                 <TextInput style={styles.titleInput}
                            onChangeText={text => props.setTitleText(text)}
                            placeholder={'Title'}
@@ -43,17 +43,28 @@ const TextEntryPane = props => {
                            placeholder={'Description'}
                            value={props.descriptionText} multiline={true} />
             </View>
-            <View style={styles.addPhotoContainer}>
+            <View style={props.photo ? styles.transparentAddPhotoContainer : styles.addPhotoContainer}>
                 <TouchableOpacity style={styles.addPhotoTouchable}
                                   onPress={() => {
                                       Keyboard.dismiss()
                                       props.turnOnCamera()
                                   }}>
-                    <Text style={styles.addPhotoText}>Add photo</Text>
+                    <Text style={styles.addPhotoText}>{props.photo ? 'Retake' : 'Add photo'}</Text>
                 </TouchableOpacity>
             </View>
         </View>
-    )
+
+    return props.photo ?
+
+        <ImageBackground source={props.photo} style={styles.backgroundImage}>
+            {content}
+        </ImageBackground>
+
+        :
+
+        <View style={styles.creationContainer}>
+            {content}
+        </View>
 
 }
 

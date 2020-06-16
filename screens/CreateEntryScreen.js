@@ -10,26 +10,29 @@ const CreateEntryScreen = props => {
     const [cameraOn, setCameraOn] = useState(false)
     const [titleText, setTitleText] = useState('')
     const [descriptionText, setDescriptionText] = useState('')
+    const [photo, setPhoto] = useState(null)
 
     const cameraRef = React.createRef();
 
-    const snap = async (cameraRef) => {if (cameraRef) {
-        let photo = await cameraRef.current.takePictureAsync();
-        console.log(await photo);
-
-            }
+    const snap = async (cameraRef) => {
+        if (cameraRef) {
+            let photoPromise = await cameraRef.current.takePictureAsync();
+            setPhoto(await photoPromise)
+            console.log(await photoPromise);
+            setCameraOn(false)
+        }
     };
 
-    console.log("HI PLEASE SHOW");
-
-    const test = () => {
-        if (cameraRef) {
-            console.log("testing yes");
-        }
-        else {
-            console.log("testing no");
-        }
-    }
+    // console.log("HI PLEASE SHOW");
+    //
+    // const test = () => {
+    //     if (cameraRef) {
+    //         console.log("testing yes");
+    //     }
+    //     else {
+    //         console.log("testing no");
+    //     }
+    // }
 
     return (
         <KeyboardAwareScrollView contentContainerStyle={styles.screen}
@@ -46,7 +49,8 @@ const CreateEntryScreen = props => {
                                       setCameraOn(true)
                                   }} testCamera={cameraRef}
                                   titleText={titleText} setTitleText={setTitleText}
-                                  descriptionText={descriptionText} setDescriptionText={setDescriptionText} />
+                                  descriptionText={descriptionText} setDescriptionText={setDescriptionText}
+                                  photo={photo}/>
 
                     <View style={styles.bottomTouchablesContainer}>
                         <TouchableOpacity style={styles.bottomTouchableOfTwo} onPress={
@@ -54,7 +58,7 @@ const CreateEntryScreen = props => {
                             <Text style={styles.primaryText}>Cancel</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.bottomTouchableOfTwo}
-                                          onPress={snap.bind(this, cameraRef)}>
+                                          onPress={cameraOn ? snap.bind(this, cameraRef) : null}>
                             <Text style={styles.primaryText}>{cameraOn ? 'Capture' : 'Submit'}</Text>
                         </TouchableOpacity>
                     </View>
