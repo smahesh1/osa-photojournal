@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import LandingScreen from "./screens/LandingScreen";
 import CreateEntryScreen from "./screens/CreateEntryScreen";
 import ViewEntriesManager from "./screens/ViewEntriesManager";
+// import firebase from 'firebase';
 
 export default function App() {
   const [screen, setScreen] = useState('l')
-
 
 
   const createEntryHandler = () => {

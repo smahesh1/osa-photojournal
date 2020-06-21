@@ -4,6 +4,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import styles from "../assets/styles";
 import Header from "../components/header";
 import CreationPane from "../components/CreationPane";
+import db from "../dummyDatabase/database";
 
 const CreateEntryScreen = props => {
 
@@ -11,6 +12,8 @@ const CreateEntryScreen = props => {
     const [titleText, setTitleText] = useState('')
     const [descriptionText, setDescriptionText] = useState('')
     const [photo, setPhoto] = useState(null)
+    const [latitude, setLatitude] = useState(null)
+    const [longitude, setLongitude] = useState(null)
 
     const cameraRef = React.createRef();
 
@@ -18,10 +21,62 @@ const CreateEntryScreen = props => {
         if (cameraRef) {
             let photoPromise = await cameraRef.current.takePictureAsync();
             setPhoto(await photoPromise)
-            console.log(await photoPromise);
+            // console.log(await photoPromise);
             setCameraOn(false)
         }
     };
+
+    const submitHandler = async () => {
+        const rightNow = new Date()
+        const dbObject = (await db.ref('lolol').once('value')).val()
+        const year = rightNow.getFullYear().toString()
+        const month = rightNow.getMonth().toString()
+
+        await navigator.geolocation.getCurrentPosition(position => {
+            setLatitude(position.coords.latitude)
+            setLongitude(position.coords.longitude)
+        });
+
+        // console.log(dbObject)
+        // console.log(year)
+        // console.log(await dbObject)
+        // console.log(Object.keys(await dbObject))
+        // console.log(year in Object.keys(await dbObject))
+        // console.log(["2020"].includes(year))
+
+        if (Object.keys(await dbObject).includes(year)) {
+            if (Object.keys(dbObject[year]).includes(month)) {
+                await db.ref('lolol/' + year + '/'
+                    + month + '/' + rightNow.getTime()).set(0)
+            } else {
+                await db.ref('lolol/' + year + '/' + month).set(0)
+                await db.ref('lolol/' + year + '/'
+                    + month + '/' + rightNow.getTime()).set(0)
+            }
+        } else {
+            await db.ref('lolol/' + year).set(0)
+            await db.ref('lolol/' + year + '/' + month).set(0)
+            await db.ref('lolol/' + year + '/' + month + '/' + rightNow.getTime()).set(0)
+        }
+
+        const dataString = '{' +
+            '"title":"' + titleText + '",' +
+            '"description":"' + descriptionText + '",' +
+            '"location":{' +
+                '"longitude":' + await longitude.toString() + ',' +
+                '"latitude":' + await latitude.toString() +
+            '},' +
+            '"photo":' + JSON.stringify(photo) +
+        '}'
+
+        // console.log(dataString)
+
+        const dataObject = JSON.parse(await dataString)
+
+        // console.log(dataObject)
+
+        await db.ref('lololdata/' + rightNow.getTime()).set(dataObject)
+    }
 
     // console.log("HI PLEASE SHOW");
     //
@@ -58,7 +113,7 @@ const CreateEntryScreen = props => {
                             <Text style={styles.primaryText}>Cancel</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.bottomTouchableOfTwo}
-                                          onPress={cameraOn ? snap.bind(this, cameraRef) : null}>
+                                          onPress={cameraOn ? snap.bind(this, cameraRef) : submitHandler}>
                             <Text style={styles.primaryText}>{cameraOn ? 'Capture' : 'Submit'}</Text>
                         </TouchableOpacity>
                     </View>

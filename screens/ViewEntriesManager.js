@@ -37,7 +37,6 @@ const ViewEntriesManager = props => {
     if (screen === 'Months') {
         ScreenObject = <ViewMonthsScreen year={year} goBackHandler={ToYearsFromMonthsHandler}
                                          MonthPressHandler={MonthPressHandler} />
-
     } else if (screen === 'Years') {
         ScreenObject = <ViewYearsScreen YearPressHandler={YearPressHandler} goBackHandler={props.goBackHandler} />
     } else if (screen === 'Moments') {
