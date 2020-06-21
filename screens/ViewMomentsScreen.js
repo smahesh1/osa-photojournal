@@ -2,8 +2,7 @@ import React from 'react';
 import {View, TouchableOpacity, FlatList, Text} from 'react-native';
 import styles from "../assets/styles";
 import Header from "../components/header";
-// import database from "../dummyDatabase/testData";
-import db from "../dummyDatabase/database";
+import displayMonths from "../assets/displayMonths";
 
 const parseTimestamp = timestampString => {
     const timestampDate = new Date(parseInt(timestampString))
@@ -20,12 +19,12 @@ const parseTimestamps = stringArray => {
 }
 
 const ViewMomentsScreen = props => {
-    const dbData = db.ref('lolol/' + props.year + '/' + props.month).once('value').val()
-    const moments = parseTimestamps(Object.keys(dbdata));
+
+    const moments = parseTimestamps(Object.keys(props.timeTree[props.year][props.month]));
 
     return (
         <View style={styles.screen}>
-            <Header headerText={props.month + ' ' + props.year}/>
+            <Header headerText={displayMonths[props.month] + ' ' + props.year}/>
             <View style={styles.flatlistContainer}>
                 <FlatList contentContainerStyle={styles.flatlist} data={moments}
                           renderItem={({item}) => (
