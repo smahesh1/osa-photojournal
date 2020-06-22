@@ -2,11 +2,11 @@ import React from 'react';
 import {View, TouchableOpacity, FlatList, Text} from 'react-native';
 import styles from "../assets/styles";
 import Header from "../components/header";
-import database from "../dummyDatabase/testData";
+import displayMonths from "../assets/displayMonths";
 
 const ViewMonthsScreen = props => {
 
-    const months = Object.keys(database['entriesByTime'][(props.year)]);
+    const months = Object.keys(props.timeTree[props.year])
 
     return (
         <View style={styles.screen}>
@@ -17,7 +17,7 @@ const ViewMonthsScreen = props => {
                               <View style={styles.monthCardContianer}>
                                   <TouchableOpacity style={styles.monthCard}
                                                     onPress={props.MonthPressHandler.bind(this, item)}>
-                                      <Text style={styles.primaryText}>{item}</Text>
+                                      <Text style={styles.primaryText}>{displayMonths[item]}</Text>
                                   </TouchableOpacity>
                               </View> )}
                           keyExtractor={item => item}

@@ -212,6 +212,70 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         width: '100%'
+    },
+    loginScreenContainer: {
+        paddingTop: '10%',
+        flex: 7,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    loginInputsContainer: {
+        flex: 2,
+        width: '90%',
+        justifyContent: 'center',
+        borderRadius: 25,
+        backgroundColor: blue,
+        height: '35%',
+        alignItems: 'center',
+    },
+    loginInput1: {
+        flexDirection: 'row',
+        flex: 1,
+        padding: '5%',
+        alignItems: 'center',
+        // backgroundColor: 45458
+    },
+    loginInput2: {
+        flexDirection: 'row',
+        flex: 1,
+        paddingLeft: '5%',
+        paddingBottom: '10%',
+        paddingTop: '0%',
+        paddingRight: '5%',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+        // backgroundColor: yellow
+    },
+    emailInput: {
+        flex: 1,
+        backgroundColor: pink,
+        fontSize: 30,
+        paddingLeft: '3%',
+        borderRadius: 10,
+        opacity: 1
+    },
+    passwordInput: {
+        flex: 3,
+        backgroundColor: pink,
+        fontSize: 30,
+        paddingLeft: '3%',
+        borderRadius: 10,
+        opacity: 1
+    },
+    goButton: {
+        flex: 1,
+        borderRadius: 10,
+        backgroundColor: pink,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    goButtonText: {
+        fontSize: 30,
+        color: 'black',
+        paddingTop: '17.5%',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 })
 

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ViewYearsScreen from "./ViewYearsScreen";
 import ViewMonthsScreen from "./ViewMonthsScreen";
 import ViewMomentsScreen from "./ViewMomentsScreen";
+import db from "../dummyDatabase/database";
+import firebase from "firebase";
 
 
 const ViewEntriesManager = props => {
@@ -12,6 +14,14 @@ const ViewEntriesManager = props => {
     const [year, setYear] = useState('');
     const [month, setMonth] = useState('')
     const [screen, setScreen] = useState('Years');
+    const [timeTree, setTimeTree] = useState(null)
+    const uid = firebase.auth().currentUser['uid']
+
+    if (timeTree === null) {
+        db.ref('datahold/' + uid + '/timetree').once('value',snapshot => {
+            setTimeTree(snapshot.val())
+        })
+    }
 
     const YearPressHandler = yearName => {
         setYear(yearName);
@@ -32,16 +42,19 @@ const ViewEntriesManager = props => {
     }
 
 
-    let ScreenObject = <ViewYearsScreen YearPressHandler={YearPressHandler} goBackHandler={props.goBackHandler} />
+    let ScreenObject = <ViewYearsScreen YearPressHandler={YearPressHandler} goBackHandler={props.goBackHandler}
+                                        timeTree={timeTree} />
 
     if (screen === 'Months') {
         ScreenObject = <ViewMonthsScreen year={year} goBackHandler={ToYearsFromMonthsHandler}
-                                         MonthPressHandler={MonthPressHandler} />
-
+                                         MonthPressHandler={MonthPressHandler}
+                                         timeTree={timeTree} />
     } else if (screen === 'Years') {
-        ScreenObject = <ViewYearsScreen YearPressHandler={YearPressHandler} goBackHandler={props.goBackHandler} />
+        ScreenObject = <ViewYearsScreen YearPressHandler={YearPressHandler} goBackHandler={props.goBackHandler}
+                                        timeTree={timeTree} />
     } else if (screen === 'Moments') {
         ScreenObject = <ViewMomentsScreen goBackHandler={ToMonthsFromMomentsHandler}
+                                          timeTree={timeTree}
                                           year={year} month={month} />
     }
 
