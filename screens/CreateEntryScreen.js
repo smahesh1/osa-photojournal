@@ -5,6 +5,7 @@ import styles from "../assets/styles";
 import Header from "../components/header";
 import CreationPane from "../components/CreationPane";
 import db from "../dummyDatabase/database";
+import firebase from "firebase";
 
 const CreateEntryScreen = props => {
 
@@ -28,7 +29,8 @@ const CreateEntryScreen = props => {
 
     const submitHandler = async () => {
         const rightNow = new Date()
-        const dbObject = (await db.ref('lolol').once('value')).val()
+        const uid = firebase.auth().currentUser["uid"]
+        const dbObject = (await db.ref('datahold/' + uid + '/timetree').once('value')).val()
         const year = rightNow.getFullYear().toString()
         const month = rightNow.getMonth().toString()
 
@@ -44,19 +46,22 @@ const CreateEntryScreen = props => {
         // console.log(year in Object.keys(await dbObject))
         // console.log(["2020"].includes(year))
 
+
+
         if (Object.keys(await dbObject).includes(year)) {
             if (Object.keys(dbObject[year]).includes(month)) {
-                await db.ref('lolol/' + year + '/'
+                await db.ref('datahold/' + uid + '/timetree/' + year + '/'
                     + month + '/' + rightNow.getTime()).set(0)
             } else {
-                await db.ref('lolol/' + year + '/' + month).set(0)
-                await db.ref('lolol/' + year + '/'
-                    + month + '/' + rightNow.getTime()).set(0)
+                await db.ref('datahold/' + uid + '/timetree/' + year + '/' + month).set(0)
+                await db.ref('datahold/' + uid + '/timetree/' + year + '/' +
+                    month + '/' + rightNow.getTime()).set(0)
             }
         } else {
-            await db.ref('lolol/' + year).set(0)
-            await db.ref('lolol/' + year + '/' + month).set(0)
-            await db.ref('lolol/' + year + '/' + month + '/' + rightNow.getTime()).set(0)
+            await db.ref('datahold/' + uid + '/timetree/' + year).set(0)
+            await db.ref('datahold/' + uid +
+                '/timetree/' + year + '/' + month).set(0)
+            await db.ref('datahold/' + uid + '/timetree/' + year + '/' + month + '/' + rightNow.getTime()).set(0)
         }
 
         const dataString = '{' +
@@ -73,9 +78,7 @@ const CreateEntryScreen = props => {
 
         const dataObject = JSON.parse(await dataString)
 
-        // console.log(dataObject)
-
-        await db.ref('lololdata/' + rightNow.getTime()).set(dataObject)
+        await db.ref('datahold/' + uid + '/actualdata/' + rightNow.getTime()).set(dataObject)
     }
 
     // console.log("HI PLEASE SHOW");

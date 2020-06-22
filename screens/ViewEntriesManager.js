@@ -3,6 +3,7 @@ import ViewYearsScreen from "./ViewYearsScreen";
 import ViewMonthsScreen from "./ViewMonthsScreen";
 import ViewMomentsScreen from "./ViewMomentsScreen";
 import db from "../dummyDatabase/database";
+import firebase from "firebase";
 
 
 const ViewEntriesManager = props => {
@@ -14,9 +15,10 @@ const ViewEntriesManager = props => {
     const [month, setMonth] = useState('')
     const [screen, setScreen] = useState('Years');
     const [timeTree, setTimeTree] = useState(null)
+    const uid = firebase.auth().currentUser['uid']
 
     if (timeTree === null) {
-        db.ref('lolol').once('value',snapshot => {
+        db.ref('datahold/' + uid + '/timetree').once('value',snapshot => {
             setTimeTree(snapshot.val())
         })
     }
