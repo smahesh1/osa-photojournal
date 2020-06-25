@@ -5,7 +5,7 @@ const config = {
     apiKey: "AIzaSyAzHRFLi9DE6Oys-fWoGJNf8AdaXdmuxEc",
     authDomain: "photojournal-29971.firebaseapp.com",
     databaseURL: "https://photojournal-29971.firebaseio.com/",
-    storageBucket: "photojournal-29971.appspot.com/"
+    storageBucket: "gs://photojournal-29971.appspot.com/"
 };
 
 firebase.initializeApp(config);

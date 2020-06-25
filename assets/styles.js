@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     inputContainer: {
         paddingTop: '10%',
         width: '80%',
-        flex: .7
+        flex: .7,
     },
     transparentInputContainer: {
         paddingTop: '10%',
@@ -276,6 +276,46 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    momentContainer: {
+        flex: 7,
+        alignItems: 'center'
+    },
+    textContainer: {
+        paddingTop: '10%',
+        width: '80%',
+        flex: .5,
+        alignItems: 'center',
+        flexDirection: 'column'
+    },
+    titleText: {
+        height: '30%',
+        width: '100%',
+        backgroundColor: 789,
+        fontSize: 30,
+        paddingLeft: '5%',
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+    },
+    descriptionText: {
+        height: '70%',
+        width: '100%',
+        backgroundColor: 456456,
+        fontSize: 20,
+        paddingLeft: '5%',
+        paddingRight: '5%',
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
+    },
+    photoContainer: {
+        flex: .5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '5%'
+    },
+    thumbnail: {
+        flex: 1,
+        resizeMode: 'contain'
     }
 })
 

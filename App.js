@@ -65,8 +65,18 @@ export default function App() {
       if (success) {
         setScreen('landing')
         Alert.alert('Success!', 'Let\'s continue our photo jouney.')
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(error => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+            });
       }
     })
+  }
+
+
+
+  if (screen === 'login' && firebase.auth()) {
+    setScreen('landing')
   }
 
   let curr_screen_object = <LoginScreen />

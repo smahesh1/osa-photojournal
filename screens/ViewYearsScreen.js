@@ -12,13 +12,6 @@ const ViewYearsScreen = (props) => {
         setYears(Object.keys(props.timeTree))
     }
 
-    //     console.log('ONCE')
-    //     console.log(years)});
-    // console.log('timeTree:')
-    // console.log(years)
-    // console.log('end timeTree log')
-
-
     return (
         <View style={styles.screen}>
             <Header headerText={'Select a year'}/>

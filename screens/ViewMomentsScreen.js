@@ -3,24 +3,20 @@ import {View, TouchableOpacity, FlatList, Text} from 'react-native';
 import styles from "../assets/styles";
 import Header from "../components/header";
 import displayMonths from "../assets/displayMonths";
+import parseTimestamp from "../assets/parseTimestamp";
 
-const parseTimestamp = timestampString => {
-    const timestampDate = new Date(parseInt(timestampString))
-    return timestampDate.toString()
-}
-
-const parseTimestamps = stringArray => {
-    const len = stringArray.length
-    let newArray = new Array(len)
-    for (let i = 0; i < len; i++) {
-        newArray[i] = parseTimestamp(stringArray[i]).slice(0, 24)
-    }
-    return newArray
-}
+// const parseTimestamps = stringArray => {
+//     const len = stringArray.length
+//     let newArray = new Array(len)
+//     for (let i = 0; i < len; i++) {
+//         newArray[i] = [parseTimestamp(stringArray[i]).slice(0, 24), stringArray[i]]
+//     }
+//     return newArray
+// }
 
 const ViewMomentsScreen = props => {
 
-    const moments = parseTimestamps(Object.keys(props.timeTree[props.year][props.month]));
+    const moments = Object.keys(props.timeTree[props.year][props.month])
 
     return (
         <View style={styles.screen}>
@@ -29,8 +25,9 @@ const ViewMomentsScreen = props => {
                 <FlatList contentContainerStyle={styles.flatlist} data={moments}
                           renderItem={({item}) => (
                               <View style={styles.momentCardContianer}>
-                                  <TouchableOpacity style={styles.momentCard} onPress={null}>
-                                      <Text style={styles.primaryText}>{item}</Text>
+                                  <TouchableOpacity style={styles.momentCard}
+                                                    onPress={props.goToMomentHandler.bind(this, item)}>
+                                      <Text style={styles.primaryText}>{parseTimestamp(item)}</Text>
                                   </TouchableOpacity>
                               </View> )}
                           keyExtractor={item => item}

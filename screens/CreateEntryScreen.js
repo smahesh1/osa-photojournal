@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, Text, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { View, TouchableOpacity, Text, Keyboard, TouchableWithoutFeedback, Alert } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from "../assets/styles";
 import Header from "../components/header";
@@ -13,8 +13,6 @@ const CreateEntryScreen = props => {
     const [titleText, setTitleText] = useState('')
     const [descriptionText, setDescriptionText] = useState('')
     const [photo, setPhoto] = useState(null)
-    const [latitude, setLatitude] = useState(null)
-    const [longitude, setLongitude] = useState(null)
 
     const cameraRef = React.createRef();
 
@@ -22,33 +20,32 @@ const CreateEntryScreen = props => {
         if (cameraRef) {
             let photoPromise = await cameraRef.current.takePictureAsync();
             setPhoto(await photoPromise)
-            // console.log(await photoPromise);
             setCameraOn(false)
         }
     };
 
-    const submitHandler = async () => {
+    const pushPhoto = async (photo, uid, rightNow) => {
+        if (photo) {
+            const storageRef = firebase.storage().ref()
+            const uidRef = storageRef.child(uid)
+            const imageRef = storageRef.child(uid + '/' + rightNow.getTime().toString())
+            // const orderedPhotoData = [photo.uri, photo.width, photo.height, photo.exif, photo.base64]
+            // const photoFile = new File(orderedPhotoData, rightNow.getTime().toString())
+            const photoRes = await fetch(photo.uri)
+            const photoBlob = await photoRes.blob()
+            imageRef.put(photoBlob)
+            console.log('HERENHEREN')
+        }
+    }
+
+    const submitHandlerHelper = async (longitude, latitude) => {
         const rightNow = new Date()
         const uid = firebase.auth().currentUser["uid"]
         const dbObject = (await db.ref('datahold/' + uid + '/timetree').once('value')).val()
         const year = rightNow.getFullYear().toString()
         const month = rightNow.getMonth().toString()
 
-        await navigator.geolocation.getCurrentPosition(position => {
-            setLatitude(position.coords.latitude)
-            setLongitude(position.coords.longitude)
-        });
-
-        // console.log(dbObject)
-        // console.log(year)
-        // console.log(await dbObject)
-        // console.log(Object.keys(await dbObject))
-        // console.log(year in Object.keys(await dbObject))
-        // console.log(["2020"].includes(year))
-
-
-
-        if (Object.keys(await dbObject).includes(year)) {
+        if (await Object.keys(await dbObject).includes(year)) {
             if (Object.keys(dbObject[year]).includes(month)) {
                 await db.ref('datahold/' + uid + '/timetree/' + year + '/'
                     + month + '/' + rightNow.getTime()).set(0)
@@ -63,34 +60,54 @@ const CreateEntryScreen = props => {
                 '/timetree/' + year + '/' + month).set(0)
             await db.ref('datahold/' + uid + '/timetree/' + year + '/' + month + '/' + rightNow.getTime()).set(0)
         }
+        
+        let stringHasPhoto = '"t"'
+        
+        if (photo === null) {
+            stringHasPhoto = '"f"'
+        }
 
         const dataString = '{' +
             '"title":"' + titleText + '",' +
             '"description":"' + descriptionText + '",' +
             '"location":{' +
-                '"longitude":' + await longitude.toString() + ',' +
-                '"latitude":' + await latitude.toString() +
+            '"longitude":' + longitude.toString() + ',' +
+            '"latitude":' + latitude.toString() +
             '},' +
-            '"photo":' + JSON.stringify(photo) +
-        '}'
+            '"hasPhoto":' + stringHasPhoto +
+            // '"photo":' + '{ ' +
+            // '"uri":"' + photo.uri.toString() + '",' +
+            // '"width":"' + photo.width.toString() + '",' +
+            // '"height":"' + photo.height.toString() + '",' +
+            // '"exif":"' + photo.exif.toString() + '",' +
+            // '"base64":"' + photo.base64.toString() + '"}' +
+            '}'
 
-        // console.log(dataString)
+        console.log(dataString)
 
-        const dataObject = JSON.parse(await dataString)
+        const dataObject = JSON.parse(dataString)
 
-        await db.ref('datahold/' + uid + '/actualdata/' + rightNow.getTime()).set(dataObject)
+        await db.ref('datahold/' + uid + '/actualdata/' + rightNow.getTime()).set(dataObject).then(
+            async () => pushPhoto(photo, uid, rightNow)).then(() => {
+                Alert.alert('Journal Entry Captured', 'Your most recent entry has been ' +
+                'stored for posterity.')
+
+                props.goBackHandler()
+            }
+        )
     }
 
-    // console.log("HI PLEASE SHOW");
-    //
-    // const test = () => {
-    //     if (cameraRef) {
-    //         console.log("testing yes");
-    //     }
-    //     else {
-    //         console.log("testing no");
-    //     }
-    // }
+    const submitHandler = async () => {
+
+        await navigator.geolocation.getCurrentPosition(position => {
+                submitHandlerHelper(position.coords.longitude, position.coords.latitude)
+            },
+            () => {
+            Alert.alert('Location Error', 'Could not find your location. Please make' +
+            'sure you have location settings turned on.')
+            submitHandlerHelper(0.0, 0.0)
+        })
+    }
 
     return (
         <KeyboardAwareScrollView contentContainerStyle={styles.screen}
