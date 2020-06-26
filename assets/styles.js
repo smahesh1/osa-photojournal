@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-const green = '#39ffbe'
-const blue = '#5ba8ff'
-const purple = '#9e62ff'
-const yellow = '#cfff7b'
-const pink = '#ff9bd3'
+const green = '#edeae5'
+// const blue = '#FCE181'
+const purple = '#026670'
+const yellow = '#fef9c7'
+const blue = yellow
+const pink = '#9fedd7'
 
 
 const styles = StyleSheet.create({
@@ -26,6 +27,9 @@ const styles = StyleSheet.create({
         width: '80%',
         alignItems: 'center',
         justifyContent: 'center',
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderWidth: 1
     },
     headerContainer: {
         marginTop: 20,
@@ -34,12 +38,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    primaryText: {
+    headerText: {
         color: 'white',
         fontSize: 20
     },
+    primaryText: {
+        color: 'black',
+        fontSize: 20
+    },
     cardText: {
-        color: 'white',
+        color: 'black',
         fontSize: 20
     },
     bottomTouchable: {
@@ -56,14 +64,14 @@ const styles = StyleSheet.create({
         flex: .4,
         height: '75%',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     bottomTouchableContainer: {
         backgroundColor: purple,
         flex: 1,
         alignItems: 'center',
         width: '100%',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     bottomTouchablesContainer: {
         flexDirection: 'row',
@@ -80,6 +88,9 @@ const styles = StyleSheet.create({
         width: 250,
         alignItems: 'center',
         justifyContent: 'center',
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderWidth: 1
     },
     monthCard: {
         borderRadius: 30,
@@ -88,6 +99,9 @@ const styles = StyleSheet.create({
         width: 250,
         alignItems: 'center',
         justifyContent: 'center',
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderWidth: 1
     },
     momentCard: {
         borderRadius: 10,
@@ -96,6 +110,9 @@ const styles = StyleSheet.create({
         width: 275,
         alignItems: 'center',
         justifyContent: 'center',
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderWidth: 1
     },
     yearCardContianer: {
         paddingBottom: 40
@@ -140,7 +157,7 @@ const styles = StyleSheet.create({
     inputContainer: {
         paddingTop: '10%',
         width: '80%',
-        flex: .7,
+        flex: .7
     },
     transparentInputContainer: {
         paddingTop: '10%',
@@ -155,7 +172,10 @@ const styles = StyleSheet.create({
         paddingLeft: '3%',
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
-        opacity: 1
+        opacity: 1,
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderWidth: 1
     },
     descriptionInput: {
         flex: 3,
@@ -165,7 +185,10 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
-        opacity: 1
+        opacity: 1,
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderWidth: 1
     },
     addPhotoContainer: {
         paddingTop: '5%',
@@ -173,7 +196,7 @@ const styles = StyleSheet.create({
         flex: .2,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingBottom: '15%'
+        paddingBottom: '15%',
     },
     transparentAddPhotoContainer: {
         paddingTop: '5%',
@@ -191,7 +214,10 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        opacity: 1
+        opacity: 1,
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderWidth: 1
     },
     addPhotoText: {
         color: 'black',
@@ -211,7 +237,7 @@ const styles = StyleSheet.create({
     textEntryPaneWrapper: {
         flex: 1,
         alignItems: 'center',
-        width: '100%'
+        width: '100%',
     },
     loginScreenContainer: {
         paddingTop: '10%',
@@ -296,6 +322,9 @@ const styles = StyleSheet.create({
         paddingLeft: '5%',
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderWidth: 1
     },
     descriptionText: {
         height: '70%',
@@ -306,18 +335,21 @@ const styles = StyleSheet.create({
         paddingRight: '5%',
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderWidth: 1
     },
     photoContainer: {
         flex: .5,
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '5%'
+        padding: '5%',
     },
     thumbnail: {
         flex: 1,
         width: 100,
         height: 100,
-        // resizeMode: 'contain'
+        resizeMode: 'contain'
     }
 })
 

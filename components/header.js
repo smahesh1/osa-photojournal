@@ -5,7 +5,7 @@ import styles from "../assets/styles";
 const Header = props => {
     return (
         <View style={styles.headerContainer}>
-            <Text style={styles.primaryText}>{props.headerText}</Text>
+            <Text style={styles.headerText}>{props.headerText}</Text>
         </View>
     )
 }
