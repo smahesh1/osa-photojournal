@@ -315,7 +315,9 @@ const styles = StyleSheet.create({
     },
     thumbnail: {
         flex: 1,
-        resizeMode: 'contain'
+        width: 100,
+        height: 100,
+        // resizeMode: 'contain'
     }
 })
 

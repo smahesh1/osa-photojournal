@@ -10,6 +10,11 @@ const config = {
 
 firebase.initializeApp(config);
 
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(error => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+});
+
 const db = firebase.database();
 
 export default db;

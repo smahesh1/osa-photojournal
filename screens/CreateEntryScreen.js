@@ -46,7 +46,7 @@ const CreateEntryScreen = props => {
         const month = rightNow.getMonth().toString()
 
         if (await Object.keys(await dbObject).includes(year)) {
-            if (Object.keys(dbObject[year]).includes(month)) {
+            if (Object.keys((await dbObject)[year]).includes(month)) {
                 await db.ref('datahold/' + uid + '/timetree/' + year + '/'
                     + month + '/' + rightNow.getTime()).set(0)
             } else {

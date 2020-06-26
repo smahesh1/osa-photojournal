@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import {View, TouchableOpacity, Text, ScrollView, Image} from 'react-native';
+import {View, TouchableOpacity, Text, ScrollView, Image, Alert} from 'react-native';
 import styles from "../assets/styles";
 import Header from "../components/header";
 import parseTimestamp from "../assets/parseTimestamp";
 import db from "../dummyDatabase/database";
 import firebase from "firebase";
+import * as FileSystem from 'expo-file-system';
 
 
 const SingleMomentScreen = props => {
@@ -27,28 +28,32 @@ const SingleMomentScreen = props => {
             setLongitude(momentData['location']['longitude'])
             setNoDataYet(false)
                 //FIXME: code below does not work to get a photo from firebase
-            // console.log('abced', momentData['hasPhoto'])
-            // if (momentData['hasPhoto'] === 't') {
-            //     const path = uid + '/' + props.thisMoment
-            //     const storage = firebase.storage()
-            //     const imageRef = storage.ref(path)
-            //     imageRef.getDownloadURL().then(url => {
-            //         const imgSrc = url
-            //             setPhoto(res)
-            //         }).catch(error => {
-            //         Alert.alert(error.code, error.message)
-            //     });
-            // }
+            console.log('abced', momentData['hasPhoto'])
+            if (momentData['hasPhoto'] === 't') {
+                const path = uid + '/' + props.thisMoment
+                const storage = firebase.storage()
+                const imageRef = storage.ref(path)
+                imageRef.getDownloadURL().then(url => {
+                    const targetLocation = FileSystem.cacheDirectory + uid + props.thisMoment
+                    FileSystem.downloadAsync(url, targetLocation).then(dowloadedFileObject => {
+                        setPhoto({ uri: dowloadedFileObject.uri })
+                    })
+                    }).catch(error => {
+                    Alert.alert(error.code, error.message)
+                });
+            }
         })
     }
+
+    console.log(photo)
 
     let photoPane = null
 
     if (photo !== null) {
+        console.log(photo)
         photoPane =
-            <View style={styles.photoContainer} >
-                <Image style={styles.thumbnail}
-                       source={photo}/>
+            <View style={styles.photoContainer}>
+                <Image style={styles.thumbnail} source={photo} />
             </View>
     }
 
@@ -70,8 +75,8 @@ const SingleMomentScreen = props => {
                         <Text>{description}</Text>
                     </ScrollView>
                 </View>
+                {photoPane}
             </View>
-            {photoPane}
             <View style={styles.bottomTouchableContainer}>
                 <TouchableOpacity style={styles.bottomTouchable} onPress={props.goBackHandler}>
                     <Text style={styles.primaryText}>Go Back</Text>
