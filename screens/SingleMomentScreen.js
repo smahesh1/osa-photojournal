@@ -27,8 +27,6 @@ const SingleMomentScreen = props => {
             setLatitude(momentData['location']['latitude'])
             setLongitude(momentData['location']['longitude'])
             setNoDataYet(false)
-                //FIXME: code below does not work to get a photo from firebase
-            console.log('abced', momentData['hasPhoto'])
             if (momentData['hasPhoto'] === 't') {
                 const path = uid + '/' + props.thisMoment
                 const storage = firebase.storage()
@@ -45,12 +43,9 @@ const SingleMomentScreen = props => {
         })
     }
 
-    console.log(photo)
-
     let photoPane = null
 
     if (photo !== null) {
-        console.log(photo)
         photoPane =
             <View style={styles.photoContainer}>
                 <Image style={styles.thumbnail} source={photo} />

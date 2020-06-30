@@ -29,12 +29,9 @@ const CreateEntryScreen = props => {
             const storageRef = firebase.storage().ref()
             const uidRef = storageRef.child(uid)
             const imageRef = storageRef.child(uid + '/' + rightNow.getTime().toString())
-            // const orderedPhotoData = [photo.uri, photo.width, photo.height, photo.exif, photo.base64]
-            // const photoFile = new File(orderedPhotoData, rightNow.getTime().toString())
             const photoRes = await fetch(photo.uri)
             const photoBlob = await photoRes.blob()
             imageRef.put(photoBlob)
-            console.log('HERENHEREN')
         }
     }
 
@@ -75,15 +72,7 @@ const CreateEntryScreen = props => {
             '"latitude":' + latitude.toString() +
             '},' +
             '"hasPhoto":' + stringHasPhoto +
-            // '"photo":' + '{ ' +
-            // '"uri":"' + photo.uri.toString() + '",' +
-            // '"width":"' + photo.width.toString() + '",' +
-            // '"height":"' + photo.height.toString() + '",' +
-            // '"exif":"' + photo.exif.toString() + '",' +
-            // '"base64":"' + photo.base64.toString() + '"}' +
             '}'
-
-        console.log(dataString)
 
         const dataObject = JSON.parse(dataString)
 

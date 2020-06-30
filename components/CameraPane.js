@@ -5,10 +5,9 @@ import { Camera } from "expo-camera";
 import { useState, useEffect} from 'react';
 
 const CameraPane = props => {
-    //const type = Camera.Constants.Type.back
 
     const [hasPermission, setHasPermission] = useState(null);
-    const [type, setType] = useState(Camera.Constants.Type.back);
+    const type = Camera.Constants.Type.back
 
     useEffect(() => {
         (async () => {
