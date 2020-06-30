@@ -5,15 +5,6 @@ import Header from "../components/header";
 import displayMonths from "../assets/displayMonths";
 import parseTimestamp from "../assets/parseTimestamp";
 
-// const parseTimestamps = stringArray => {
-//     const len = stringArray.length
-//     let newArray = new Array(len)
-//     for (let i = 0; i < len; i++) {
-//         newArray[i] = [parseTimestamp(stringArray[i]).slice(0, 24), stringArray[i]]
-//     }
-//     return newArray
-// }
-
 const ViewMomentsScreen = props => {
 
     const moments = Object.keys(props.timeTree[props.year][props.month])
